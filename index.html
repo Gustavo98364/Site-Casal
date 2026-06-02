@@ -292,53 +292,38 @@ Eu te amo hoje, amanhã e para sempre ❤️
 
 <script>
 
-// DATA DO NAMORO
-const dataNamoro = new Date("2024-06-07");
+const dataNamoro = new Date("2024-06-04");
 
-function atualizarContador(){
+function atualizarContador() {
+    const agora = new Date();
 
-const agora = new Date();
+    let anos = agora.getFullYear() - dataNamoro.getFullYear();
+    let meses = agora.getMonth() - dataNamoro.getMonth();
+    let dias = agora.getDate() - dataNamoro.getDate();
 
-let diferenca = agora - dataNamoro;
+    if (dias < 0) {
+        meses--;
 
-let dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+        const ultimoMes = new Date(
+            agora.getFullYear(),
+            agora.getMonth(),
+            0
+        );
 
-let anos = Math.floor(dias / 365);
+        dias += ultimoMes.getDate();
+    }
 
-let meses = Math.floor((dias % 365) / 30);
+    if (meses < 0) {
+        anos--;
+        meses += 12;
+    }
 
-let diasRestantes = Math.floor((dias % 365) % 30);
-
-document.getElementById("contador").innerHTML =
-`${anos} anos, ${meses} meses e ${diasRestantes} dias ❤️`;
-
+    document.getElementById("contador").innerHTML =
+        `${anos} anos, ${meses} meses e ${dias} dias ❤️`;
 }
 
-setInterval(atualizarContador,1000);
 atualizarContador();
-
-function mostrarSurpresa(){
-
-document.getElementById("surpresa").style.display="block";
-
-for(let i=0;i<60;i++){
-
-let coracao=document.createElement("div");
-
-coracao.innerHTML="❤️";
-coracao.classList.add("coracao");
-
-coracao.style.left=Math.random()*100+"vw";
-
-document.body.appendChild(coracao);
-
-setTimeout(()=>{
-coracao.remove();
-},4000);
-
-}
-
-}
+setInterval(atualizarContador, 1000);
 
 </script>
 
