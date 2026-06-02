@@ -325,6 +325,30 @@ function atualizarContador() {
 atualizarContador();
 setInterval(atualizarContador, 1000);
 
+function mostrarSurpresa() {
+
+    const surpresa = document.getElementById("surpresa");
+
+    surpresa.style.display = "block";
+
+    for(let i = 0; i < 20; i++) {
+
+        const coracao = document.createElement("div");
+
+        coracao.className = "coracao";
+        coracao.innerHTML = "❤️";
+
+        coracao.style.left = Math.random() * window.innerWidth + "px";
+        coracao.style.bottom = "0px";
+
+        document.body.appendChild(coracao);
+
+        setTimeout(() => {
+            coracao.remove();
+        }, 4000);
+    }
+}
+    
 </script>
 
 </body>
